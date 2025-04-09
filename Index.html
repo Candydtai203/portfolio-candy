@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Duong Van Tai</title>
+    <!-- Link Font Awesome để sử dụng icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Link Google Fonts để sử dụng font hiện đại -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset mặc định */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; /* Font hiện đại */
+            background-color: #1a2526; /* Màu nền chính giống trong CV */
+            color: #ffffff; /* Màu chữ trắng */
+            overflow-x: hidden; /* Ngăn cuộn ngang */
+            position: relative;
+        }
+
+        /* Hiệu ứng hạt nền */
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Đặt phía sau nội dung */
+        }
+
+        /* Thiết kế sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #0f1718; /* Màu nền của sidebar */
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2; /* Đặt trên particles */
+        }
+
+        .sidebar ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .sidebar ul li i {
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #2a3b3d;
+            color: #00ddeb;
+        }
+
+        .sidebar ul li:hover a,
+        .sidebar ul li:hover i {
+            color: #00ddeb;
+        }
+
+        /* Thiết kế nội dung chính */
+        .main-content {
+            margin-left: 250px; /* Để lại khoảng trống cho sidebar */
+            padding: 60px; /* Tăng padding để tạo không gian rộng rãi */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Căn giữa nội dung */
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Đặt trên particles */
+        }
+
+        /* Phần hero section */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Căn giữa theo chiều dọc */
+            gap: 15px; /* Khoảng cách giữa các phần tử */
+            position: relative;
+            padding: 30px;
+            background: rgba(42, 59, 61, 0.3); /* Nền mờ để tạo sự liên kết */
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 221, 235, 0.1); /* Ánh sáng nhẹ */
+            width: 100%; /* Đảm bảo hero-section chiếm toàn bộ chiều rộng */
+            max-width: 800px; /* Giới hạn chiều rộng tối đa */
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center; /* Căn giữa ảnh */
+        }
+
+        .hero-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* Bo tròn ảnh */
+            object-fit: contain; /* Giữ nguyên tỷ lệ ảnh, không cắt */
+            background-color: #2a3b3d; /* Nền cho ảnh */
+            border: 5px solid transparent; /* Viền trong suốt để tạo gradient */
+            box-shadow: 0 0 20px rgba(0, 221, 235, 0.3); /* Ánh sáng nhẹ */
+            transition: transform 0.3s ease;
+            opacity: 0; /* Ẩn ban đầu để tạo hiệu ứng */
+            transform: translateY(20px); /* Dịch xuống một chút */
+            transition: all 0.5s ease-in-out;
+        }
+
+        .hero-image img.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05); /* Hiệu ứng phóng to khi hover */
+            box-shadow: 0 0 30px rgba(0, 221, 235, 0.5); /* Tăng ánh sáng khi hover */
+        }
+
+        /* Viền gradient động */
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00ddeb, #1a2526, #00ddeb);
+            background-size: 200%;
+            animation: gradientBorder 5s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientBorder {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Khoảng cách giữa các phần tử trong hero-text */
+            width: 100%; /* Đảm bảo hero-text chiếm toàn bộ chiều rộng */
+            align-items: center; /* Căn giữa các phần tử con */
+        }
+
+        .hero-text h1 {
+            font-size: 48px; /* Giảm nhẹ kích thước tên */
+            letter-spacing: 3px; /* Tăng khoảng cách giữa các chữ */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-in-out 0.2s; /* Trễ 0.2s so với ảnh */
+            margin: 0; /* Xóa margin mặc định */
+            padding: 0; /* Xóa padding mặc định */
+            width: 100%; /* Đảm bảo h1 chiếm toàn bộ chiều rộng */
+            text-align: center; /* Căn giữa chữ */
+        }
+
+        .hero-text h1.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-text .occupation {
+            font-size: 24px;
+            color: #00ddeb; /* Màu xanh lam cho nghề nghiệp */
+            letter-spacing: 1.5px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-in-out 0.4s; /* Trễ 0.4s */
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-text .occupation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-in-out 0.6s; /* Trễ 0.6s */
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-text p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Nút CTA */
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(42, 59, 61, 0.5); /* Nền mờ để tạo sự liên kết */
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(0, 221, 235, 0.2); /* Ánh sáng nhẹ */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-in-out 0.8s; /* Trễ 0.8s */
+            justify-content: center; /* Căn giữa các nút */
+        }
+
+        .cta-buttons.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #00ddeb, #3a4b4d); /* Gradient cho nút */
+            background-size: 200%;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 221, 235, 0.3); /* Ánh sáng nhẹ */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-button i {
+            font-size: 16px;
+        }
+
+        .cta-button:hover {
+            background-position: 100% 0;
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 221, 235, 0.5);
+        }
+
+        /* Phần phụ (sub-section) */
+        .sub-section {
+            margin-top: 80px;
+            max-width: 800px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .sub-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sub-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+            color: #00ddeb;
+        }
+
+        .sub-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .sub-section .highlight {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .highlight-item {
+            background-color: #2a3b3d;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            background-color: #3a4b4d;
+            box-shadow: 0 0 15px rgba(0, 221, 235, 0.3);
+        }
+
+        .highlight-item i {
+            font-size: 30px;
+            color: #00ddeb;
+            margin-bottom: 10px;
+        }
+
+        .highlight-item p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Đường viền chuyển tiếp giữa hero và sub-section */
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #00ddeb, transparent);
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hiệu ứng hạt nền -->
+    <div id="particles"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="Index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="Aboutme.html"><i class="fas fa-user"></i> About me</a></li>
+            <li><a href="TechnicalSkills.html"><i class="fas fa-tools"></i> Technical Skills</a></li>
+            <li><a href="Projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="Experience.html"><i class="fas fa-briefcase"></i> Work Experience</a></li>
+            <li><a href="Education.html"><i class="fas fa-graduation-cap"></i> Education</a></li>
+        </ul>
+    </div>
+
+    <!-- Nội dung chính -->
+    <div class="main-content">
+        <div class="hero-section">
+            <div class="hero-image">
+                <!-- Thay thế "profile.jpg" bằng đường dẫn đến ảnh của bạn -->
+                <img src="profile.jpg" alt="Duong Van Tai">
+            </div>
+            <div class="hero-text">
+                <h1 id="typing-name"></h1>
+                <p class="occupation">DEVELOPER AND DESIGNER</p>
+                <p>Welcome to my portfolio! I'm a junior programmer passionate about creating efficient solutions and user-friendly interfaces. Explore my projects, skills, and more.</p>
+            </div>
+            <div class="cta-buttons">
+                <a href="Projects.html" class="cta-button"><i class="fas fa-project-diagram"></i> View My Projects</a>
+                <a href="Aboutme.html" class="cta-button"><i class="fas fa-envelope"></i> Contact Me</a>
+            </div>
+        </div>
+
+        <!-- Phần phụ (sub-section) -->
+        <div class="sub-section">
+            <h2>Why Choose Me?</h2>
+            <p>Here are a few highlights of my skills and achievements that make me stand out.</p>
+            <div class="highlight">
+                <div class="highlight-item">
+                    <i class="fas fa-code"></i>
+                    <p>Proficient in Python, HTML, CSS</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-trophy"></i>
+                    <p>Best Web Design Award Winner</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-users"></i>
+                    <p>Strong Team Collaboration</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thư viện particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Khởi tạo particles.js
+        particlesJS('particles', {
+            particles: {
+                number: { value: 50, density: { enable: true, value_area: 800 } },
+                color: { value: '#00ddeb' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: false },
+                move: { enable: true, speed: 1, direction: 'none', random: true, straight: false, out_mode: 'out' }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        // Hiệu ứng animation khi tải trang
+        window.addEventListener('load', () => {
+            document.querySelector('.hero-image img').classList.add('visible');
+            document.querySelector('.hero-text .occupation').classList.add('visible');
+            document.querySelector('.hero-text p').classList.add('visible');
+            document.querySelector('.cta-buttons').classList.add('visible');
+            document.querySelector('.sub-section').classList.add('visible');
+        });
+
+        // Hiệu ứng gõ chữ cho tên
+        const nameElement = document.getElementById('typing-name');
+        const nameText = "Hi, I'm Duong Van Tai";
+        let index = 0;
+
+        function typeName() {
+            if (index < nameText.length) {
+                nameElement.textContent += nameText.charAt(index);
+                index++;
+                setTimeout(typeName, 100); // Tốc độ gõ (100ms mỗi ký tự)
+            }
+        }
+
+        window.addEventListener('load', typeName);
+    </script>
+</body>
+</html>

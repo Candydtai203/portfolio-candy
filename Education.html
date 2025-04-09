@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education - Duong Van Tai</title>
+    <!-- Link Font Awesome để sử dụng icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset mặc định */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a2526; /* Màu nền chính giống trong CV */
+            color: #ffffff; /* Màu chữ trắng */
+        }
+
+        /* Thiết kế sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #0f1718; /* Màu nền của sidebar */
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .sidebar ul li i {
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #2a3b3d;
+            color: #00ddeb;
+        }
+
+        .sidebar ul li:hover a,
+        .sidebar ul li:hover i {
+            color: #00ddeb;
+        }
+
+        /* Thiết kế nội dung chính */
+        .main-content {
+            margin-left: 250px; /* Để lại khoảng trống cho sidebar */
+            padding: 60px; /* Tăng padding để tạo không gian rộng rãi */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-content h1 {
+            font-size: 40px; /* Tăng kích thước tiêu đề */
+            margin-bottom: 40px; /* Tăng khoảng cách dưới */
+            border-bottom: 2px solid #00ddeb; /* Đường viền dưới tiêu đề */
+            padding-bottom: 15px;
+            display: inline-block;
+            letter-spacing: 2px; /* Tăng khoảng cách giữa các chữ */
+        }
+
+        /* Thiết kế timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px; /* Giới hạn chiều rộng timeline */
+            margin: 0 auto;
+        }
+
+        /* Đường thẳng dọc của timeline */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #00ddeb; /* Đường thẳng màu xanh lam */
+            top: 0;
+            bottom: 0;
+            left: 50px; /* Đặt đường thẳng cách mép trái */
+        }
+
+        /* Container cho từng mục giáo dục */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px; /* Tăng khoảng cách giữa các mục */
+            padding-left: 100px; /* Để lại khoảng trống cho vòng tròn và đường thẳng */
+            opacity: 0; /* Ẩn ban đầu để tạo hiệu ứng animation */
+            transform: translateY(20px); /* Dịch xuống một chút */
+            transition: all 0.5s ease-in-out; /* Hiệu ứng animation */
+        }
+
+        /* Hiển thị khi tải trang */
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Vòng tròn đánh dấu thời gian */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #00ddeb;
+            border-radius: 50%;
+            left: 42px; /* Căn chỉnh với đường thẳng */
+            top: 5px;
+            border: 3px solid #1a2526; /* Viền ngoài cùng màu nền */
+        }
+
+        /* Phần nội dung của mục giáo dục */
+        .timeline-content {
+            background-color: #2a3b3d; /* Nền xám đậm */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bóng đổ nhẹ */
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px); /* Nâng lên khi hover */
+            background-color: #3a4b4d; /* Đổi màu nền khi hover */
+        }
+
+        .timeline-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content h3 i {
+            color: #00ddeb; /* Biểu tượng màu xanh lam */
+        }
+
+        .timeline-content .degree {
+            font-size: 18px;
+            color: #00ddeb; /* Màu xanh lam cho tên chương trình học */
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            line-height: 1.8; /* Tăng khoảng cách giữa các dòng */
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="Index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="Aboutme.html"><i class="fas fa-user"></i> About me</a></li>
+            <li><a href="TechnicalSkills.html"><i class="fas fa-tools"></i> Technical Skills</a></li>
+            <li><a href="Projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="Experience.html"><i class="fas fa-briefcase"></i> Work Experience</a></li>
+            <li><a href="Education.html"><i class="fas fa-graduation-cap"></i> Education</a></li>
+        </ul>
+    </div>
+
+    <!-- Nội dung chính -->
+    <div class="main-content">
+        <h1>Education</h1>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3><i class="fas fa-graduation-cap"></i> Vietnam-Korea University</h3>
+                    <p class="degree">Bachelor of Artificial Intelligence Engineering</p>
+                    <ul>
+                        <li>Expected Graduation: 01/2026</li>
+                        <li>Relevant Coursework: Machine Learning, Data Structures, Predictive Analytics</li>
+                        <li>Developing skills in Python, Jupyter Notebook, and AI model development</li>
+                        <li>UX/UI design, and wireframing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Hiệu ứng animation khi tải trang
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        window.addEventListener('load', () => {
+            timelineItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, index * 300); /* Hiển thị từng mục cách nhau 300ms */
+            });
+        });
+    </script>
+</body>
+</html>

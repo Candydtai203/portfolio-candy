@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Duong Van Tai</title>
+    <!-- Link Font Awesome để sử dụng icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset mặc định */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a2526;
+            color: #ffffff;
+        }
+
+        /* Thiết kế sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #0f1718;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .sidebar ul li i {
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #2a3b3d;
+            color: #00ddeb;
+        }
+
+        .sidebar ul li:hover a,
+        .sidebar ul li:hover i {
+            color: #00ddeb;
+        }
+
+        /* Thiết kế nội dung chính */
+        .main-content {
+            margin-left: 250px;
+            padding: 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-content h1 {
+            font-size: 40px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #00ddeb;
+            padding-bottom: 15px;
+            display: inline-block;
+            letter-spacing: 2px;
+            opacity: 0; /* Ẩn ban đầu */
+            transform: translateY(20px); /* Dịch xuống */
+            transition: all 0.5s ease-in-out; /* Hiệu ứng animation */
+        }
+
+        .main-content h1.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Phần thông tin cá nhân */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            opacity: 0; /* Ẩn ban đầu */
+            transform: translateY(20px); /* Dịch xuống */
+            transition: all 0.5s ease-in-out; /* Hiệu ứng animation */
+        }
+
+        .profile-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: contain;
+            background-color: #2a3b3d;
+            border: 3px solid #00ddeb;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-info h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .profile-info .occupation {
+            font-size: 20px;
+            color: #00ddeb;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info p:hover {
+            color: #00ddeb;
+        }
+
+        .contact-info i {
+            color: #00ddeb;
+            font-size: 20px;
+        }
+
+        /* Phần mô tả bản thân */
+        .description-section {
+            background-color: #2a3b3d;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            line-height: 1.8;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+            opacity: 0; /* Ẩn ban đầu */
+            transform: translateY(20px); /* Dịch xuống */
+            transition: all 0.5s ease-in-out; /* Hiệu ứng animation */
+        }
+
+        .description-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="Index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="Aboutme.html"><i class="fas fa-user"></i> About me</a></li>
+            <li><a href="TechnicalSkills.html"><i class="fas fa-tools"></i> Technical Skills</a></li>
+            <li><a href="Projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="Experience.html"><i class="fas fa-briefcase"></i> Work Experience</a></li>
+            <li><a href="Education.html"><i class="fas fa-graduation-cap"></i> Education</a></li>
+        </ul>
+    </div>
+
+    <!-- Nội dung chính -->
+    <div class="main-content">
+        <h1>ABOUT ME</h1>
+
+        <!-- Phần thông tin cá nhân và ảnh -->
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="profile.jpg" alt="Duong Van Tai">
+            </div>
+            <div class="profile-info">
+                <h2>DUONG VAN TAI</h2>
+                <p class="occupation">Developer and Designer</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> 077 337 8208</p>
+                    <p><i class="fas fa-envelope"></i> taigno69@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Hoa Quy, Ngu Hanh Son, Da Nang</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phần mô tả bản thân -->
+        <div class="description-section">
+            <p>I am a junior programmer with a strong foundation in programming and a knack for design, demonstrated through successfully completing various school projects and earning an ENCOURAGEMENT AWARD in the ‘Best Web Design’ competition held by my school. With moderate knowledge of technologies like Python, HTML, CSS, and tools such as Jupyter Notebook and Figma, I am passionate about creating efficient solutions and user-friendly interfaces. I am eager to learn, adapt, and contribute my skills to innovative projects while growing in a dynamic professional environment.</p>
+        </div>
+    </div>
+
+    <script>
+        // Hiệu ứng animation khi tải trang
+        const elements = document.querySelectorAll('.main-content h1, .profile-section, .description-section');
+        window.addEventListener('load', () => {
+            elements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('visible');
+                }, index * 300); /* Hiển thị từng phần tử cách nhau 300ms */
+            });
+        });
+    </script>
+</body>
+</html>
